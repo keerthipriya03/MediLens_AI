@@ -5,7 +5,7 @@ from google import genai
 
 
 import json
-from prompts import MEDICAL_EXTRACTION_PROMPT, MEDICAL_EXPLANATION_PROMPT    #gets the prompts from prompts.py
+from prompts import MEDICAL_EXTRACTION_PROMPT, MEDICAL_EXPLANATION_PROMPT, TRANSLATION_PROMPT    #gets the prompts from prompts.py
     
 
 load_dotenv()
@@ -22,14 +22,14 @@ client = genai.Client(api_key=api_key)
 # for model in client.models.list():
 #     print(model.name)
 
-
+                            # Medical Report #
 report_text = """
 Hemoglobin: 10.2 g/dL (Reference range: 12-16 g/dL)
 Creatinine: 1.1 mg/dL (Reference range: 0.6-1.2 mg/dL)
 WBC: 12,500 /µL (Reference range: 4,000-11,000 /µL)
 Platelets: 250,000 /µL (Reference range: 150,000-450,000 /µL)
 """
-
+                            #Extract tests as JSON#
 prompt = MEDICAL_EXTRACTION_PROMPT + "\n" + report_text
 
 
@@ -78,7 +78,7 @@ except json.JSONDecodeError:
 #     print("=" * 50)
 #     print(explanation_response.text)
 
-#explain all tests
+                    #explain all tests in english#
 # Generate explanations for all extracted tests in one Gemini request
 
 tests_info = ""
@@ -112,3 +112,30 @@ print("SIMPLE MEDICAL EXPLANATIONS")
 print("=" * 60)
 
 print(explanation_response.text)
+
+
+# # Step 4.2: Translate all explanations to Telugu #
+# telugu_prompt = TELUGU_TRANSLATION_PROMPT + "\n" + explanation_response.text
+# telugu_response = client.models.generate_content(
+#     model="gemini-3.5-flash",
+#     contents=telugu_prompt
+# )
+# print("\n" + "=" * 60)
+# print("TELUGU TRANSLATION")
+# print("=" * 60)
+# print(telugu_response.text)
+
+
+
+language = "Hindi"
+translation_prompt = TRANSLATION_PROMPT.format(
+    language=language
+) + "\n" + explanation_response.text
+translation_response = client.models.generate_content(
+    model="gemini-3.5-flash",
+    contents=translation_prompt
+)
+print("\n" + "=" * 60)
+print(f"TRANSLATION ({language})")
+print("=" * 60)
+print(translation_response.text)
