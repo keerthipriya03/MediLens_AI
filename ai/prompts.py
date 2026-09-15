@@ -52,7 +52,9 @@ Important safety rules:
 - Do NOT tell the patient to stop or start medication.
 - Do NOT make assumptions about missing information.
 - Clearly state when the reference range is not available.
-- Keep the explanation concise and suitable for a general user.
+- Explain results only in relation to the reference range provided in the report.
+- Do not claim that an abnormal result definitely means a specific disease.
+- Keep the explanation educational and easy to understand.
 
 Test information:
 """
@@ -91,6 +93,8 @@ Important rules:
 - Do NOT add information that is not present in the original explanation.
 - Use simple language that an ordinary patient can understand.
 - Translate ALL of the provided explanations.
+- Preserve all safety statements and disclaimers from the original explanation.
+- Do not introduce a diagnosis or medical advice during translation.
 
 Medical explanations:
 """

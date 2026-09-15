@@ -139,3 +139,8 @@ print("\n" + "=" * 60)
 print(f"TRANSLATION ({language})")
 print("=" * 60)
 print(translation_response.text)
+print(
+    "MediExplain AI provides educational information to help users "
+    "understand medical reports. It does not provide a diagnosis "
+    "or replace advice from a qualified healthcare professional."
+)
