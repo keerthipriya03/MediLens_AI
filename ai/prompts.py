@@ -92,5 +92,6 @@ Important rules:
 - Use simple language that an ordinary patient can understand.
 - Translate ALL of the provided explanations.
 
+Target language: {language}
 Medical explanations:
 """

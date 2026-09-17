@@ -4,6 +4,8 @@ from pdf_extractor import extract_text_from_pdf
 from ocr import extract_text_from_image
 from text_cleaner import clean_text
 
+from ai.medical_ai import analyze_medical_report
+
 st.title("MediExplain AI")
 
 st.write(
@@ -12,7 +14,7 @@ st.write(
 
 language = st.selectbox(
     "Select your language",
-    ["English", "Telugu"]
+    ["English", "Telugu", "Hindi", "Tamil", "Kannada", "Malayalam"]
 )
 
 uploaded_file = st.file_uploader(
@@ -49,4 +51,29 @@ if uploaded_file:
             "Report Content",
             extracted_text,
             height=300
+        )
+
+        st.subheader("AI Explanation")
+
+        with st.spinner("Analyzing your medical report..."):
+
+            try:
+
+                result = analyze_medical_report(
+                    extracted_text,
+                    language
+                )
+
+            except RuntimeError as e:
+
+                st.error(str(e))
+                st.stop()
+
+        st.write(result["explanation"])
+
+        st.warning(
+            "Medical Disclaimer: MediExplain AI provides educational "
+            "information to help users understand medical reports. "
+            "It does not provide a diagnosis or replace advice from "
+            "a qualified healthcare professional."
         )
