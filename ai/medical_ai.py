@@ -11,9 +11,7 @@ from ai.prompts import (
     TRANSLATION_PROMPT,
 )
 
-# ---------------------------------------------------------
 # Environment / Gemini client
-# ---------------------------------------------------------
 
 load_dotenv()
 
@@ -31,9 +29,7 @@ client = genai.Client(api_key=api_key)
 MODEL_NAME = "gemini-3.5-flash"
 
 
-# ---------------------------------------------------------
 # Gemini helper
-# ---------------------------------------------------------
 
 # def generate_ai_response(prompt):
 #     """
@@ -112,9 +108,7 @@ def generate_ai_response(prompt):
 
 
 
-# ---------------------------------------------------------
 # JSON cleanup
-# ---------------------------------------------------------
 
 def clean_json_response(result):
     """
@@ -144,9 +138,7 @@ def clean_json_response(result):
     return result
 
 
-# ---------------------------------------------------------
 # Step 1: Extract medical tests
-# ---------------------------------------------------------
 
 def extract_medical_tests(report_text):
 
@@ -195,9 +187,7 @@ def extract_medical_tests(report_text):
     return medical_data
 
 
-# ---------------------------------------------------------
 # Step 2: Generate English explanations
-# ---------------------------------------------------------
 
 def generate_explanations(medical_data):
 
@@ -257,9 +247,7 @@ IMPORTANT:
     return generate_ai_response(explanation_prompt)
 
 
-# ---------------------------------------------------------
 # Step 3: Translate
-# ---------------------------------------------------------
 
 def translate_explanations(explanation_text, language):
 
@@ -280,9 +268,7 @@ def translate_explanations(explanation_text, language):
     return generate_ai_response(translation_prompt)
 
 
-# ---------------------------------------------------------
 # Complete medical report analysis
-# ---------------------------------------------------------
 
 def analyze_medical_report(report_text, language):
 
