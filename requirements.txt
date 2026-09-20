@@ -1,3 +1,16 @@
+streamlit
+google-genai
+python-dotenv
+requests
+pytesseract
+fitz
+io
+
+
+
+
+
+
 annotated-types==0.8.0
 anyio==4.15.1
 certifi==2026.7.22
@@ -28,3 +41,4 @@ typing-inspection==0.4.4
 typing_extensions==4.16.0
 urllib3==2.7.0
 websockets==16.1.1
+

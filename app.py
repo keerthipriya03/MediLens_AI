@@ -64,8 +64,9 @@ if uploaded_file:
                     language
                 )
 
+            except ValueError as e:
+                st.warning(str(e))
             except RuntimeError as e:
-
                 st.error(str(e))
                 st.stop()
 
@@ -77,3 +78,11 @@ if uploaded_file:
             "It does not provide a diagnosis or replace advice from "
             "a qualified healthcare professional."
         )
+
+
+
+
+
+
+
+
