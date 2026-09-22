@@ -4,6 +4,7 @@ python-dotenv
 requests
 pytesseract
 PyMuPDF
+Pillow
 
 
 
