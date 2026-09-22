@@ -23,27 +23,24 @@ uploaded_file = st.file_uploader(
 )
 
 if uploaded_file:
-
     st.success("File uploaded successfully!")
-
     if st.button("Analyze Report"):
-
         file_name = uploaded_file.name.lower()
-
         if file_name.endswith(".pdf"):
-
             extracted_text = extract_text_from_pdf(
                 uploaded_file
             )
-
         else:
-
             extracted_text = extract_text_from_image(
                 uploaded_file
             )
-
         # Clean the extracted text
         extracted_text = clean_text(extracted_text)
+        if not extracted_text.strip():
+            st.error(
+                "No readable text could be extracted from this report."
+            )
+            st.stop()
 
         st.subheader("Extracted Text")
 
@@ -56,14 +53,11 @@ if uploaded_file:
         st.subheader("AI Explanation")
 
         with st.spinner("Analyzing your medical report..."):
-
             try:
-
                 result = analyze_medical_report(
                     extracted_text,
                     language
                 )
-
             except ValueError as e:
                 st.warning(str(e))
             except RuntimeError as e:
